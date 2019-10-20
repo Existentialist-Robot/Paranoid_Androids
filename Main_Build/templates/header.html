@@ -1,0 +1,29 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+
+<header class="wrapper">
+  <h1><a href="{% url 'home' %}">Paranoid Android</a></h1>
+  <nav>
+    <div class="header-links">
+      <div class="search-container">
+        <div class="search-form" method="GET" action=""/>
+          <li><a href="{% url 'search:Mission' %}">Mission</a></li>
+          <li><a href="{% url 'search:Team' %}">Team</a></li>
+          <li><a href="{% url 'search:Contact' %}">Contact Us</a></li>
+        </div>
+        <div class="conditional-links">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'search:profile' %}">Profile</a></li>
+          <li><a href="{% url 'accounts:Logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'accounts:Login' %}">Login</a></li>
+          <li><a href="{% url 'accounts:Signup' %}">Signup</a></li>
+        {% endif %}
+      </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+

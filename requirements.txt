@@ -1,0 +1,7 @@
+django
+#Taggit
+django-extensions
+#sendgrid-django
+#django-dbbackup
+#django-cron
+#conda install -c conda-forge opencv

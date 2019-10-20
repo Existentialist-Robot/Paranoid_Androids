@@ -1,0 +1,31 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <div class="mission-container">
+    <div class="logo-intro">
+      <h1><a href="{% url 'home' %}"><img src="{% static 'Logo.svg' %}" width="150"  height="150"/></a></h1>
+      <p>Welcome to Paranoid Andriod's latest project.<br> Here we establish an open source and friendly user interface for querying images from NeoSSAT, a Canadian Space Agency satellite that came online in 2013 .</p>
+    </div>
+  </div>
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for metadata in filter.qs %}
+    <h2><a href="{% url 'search:detail' slug=metadata.slug %}"><img src="{% static 'default.png' %}" width="250"  height="250"/></a></h2>
+    <li>coordinates({{ metadata.x_coord }},{{ metadata.y_coord }},{{ metadata.z_coord }})</li>
+    <li>Name {{ metadata.name }}</li>
+    <li>Year: {{ metadata.year }}</li>
+    <li>Month: {{ metadata.month }}</li>
+    <li>Day of Year: {{ metadata.month }}</li>
+  {% endfor %}
+  </ul>
+    {% include "pagination.html" with page=response %}
+{% endblock %}
+
+
+
+
+
